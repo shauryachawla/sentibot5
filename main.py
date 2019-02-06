@@ -23,8 +23,6 @@ api = tweepy.API(auth)
 # searchTerm = input("Enter Keyword/Tag to search about: ")
 # NoOfTerms = int(input("Enter how many tweets to search: "))
 
-usrnm = "sentibot5"
-psw = "oreganooregano"
 # trends = []
 # jdata = api.trends_place(23424848)
 # # pprint(jdata[0]["trends"])
