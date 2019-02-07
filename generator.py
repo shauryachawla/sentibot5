@@ -3,7 +3,8 @@ import tweepy
 import csv
 import re
 from textblob import TextBlob
-import matplotlib.pyplot as plt
+from keys import consumerKey, consumerSecret, accessToken, accessTokenSecret
+# import matplotlib.pyplot as plt
 
 
 class SentimentAnalysis:
@@ -14,27 +15,27 @@ class SentimentAnalysis:
 
     def DownloadData(self):
         # authenticating
-        consumerKey = 'HH4hwY67dGWJyaAEfTDy9k5pT'
-        consumerSecret = 'OncYalv9gFdf06U04B0QEkKGu56eI5eskxZAL8xyUbSsi8x69g'
-        accessToken = '781810109211041792-G4THQ2e6Z63WTzCqSQVpUBM45I0VsjZ'
-        accessTokenSecret = 'QKbZ5rOc3EGTt2wpGpMcJmhhmpnfQRXHfXDxK4z2KmQBj'
-        auth = tweepy.OAuthHandler(consumerKey, consumerSecret)
-        auth.set_access_token(accessToken, accessTokenSecret)
-        api = tweepy.API(auth)
+        # consumerKey = 'HH4hwY67dGWJyaAEfTDy9k5pT'
+        # consumerSecret = 'OncYalv9gFdf06U04B0QEkKGu56eI5eskxZAL8xyUbSsi8x69g'
+        # accessToken = '781810109211041792-G4THQ2e6Z63WTzCqSQVpUBM45I0VsjZ'
+        # accessTokenSecret = 'QKbZ5rOc3EGTt2wpGpMcJmhhmpnfQRXHfXDxK4z2KmQBj'
+        # auth = tweepy.OAuthHandler(consumerKey, consumerSecret)
+        # auth.set_access_token(accessToken, accessTokenSecret)
+        # api = tweepy.API(auth)
 
         # input for term to be searched and how many tweets to search
         searchTerm = input("Enter Keyword/Tag to search about: ")
-        NoOfTerms = int(input("Enter how many tweets to search: "))
+        # NoOfTerms = int(input("Enter how many tweets to search: "))
 
         # searching for tweets
         self.tweets = tweepy.Cursor(
             api.search, q=searchTerm, lang="en").items(NoOfTerms)
 
         # Open/create a file to append data to
-        csvFile = open('result.csv', 'a')
+        # csvFile = open('result.csv', 'a')
 
         # Use csv writer
-        csvWriter = csv.writer(csvFile)
+        # csvWriter = csv.writer(csvFile)
 
         # creating some variables to store info
         polarity = 0
@@ -130,21 +131,6 @@ class SentimentAnalysis:
     def percentage(self, part, whole):
         temp = 100 * float(part) / float(whole)
         return format(temp, '.2f')
-
-    def plotPieChart(self, positive, wpositive, spositive, negative, wnegative, snegative, neutral, searchTerm, noOfSearchTerms):
-        labels = ['Positive [' + str(positive) + '%]', 'Weakly Positive [' + str(wpositive) + '%]', 'Strongly Positive [' + str(spositive) + '%]', 'Neutral [' + str(neutral) + '%]',
-                  'Negative [' + str(negative) + '%]', 'Weakly Negative [' + str(wnegative) + '%]', 'Strongly Negative [' + str(snegative) + '%]']
-        sizes = [positive, wpositive, spositive,
-                 neutral, negative, wnegative, snegative]
-        colors = ['yellowgreen', 'lightgreen', 'darkgreen',
-                  'gold', 'red', 'lightsalmon', 'darkred']
-        patches, texts = plt.pie(sizes, colors=colors, startangle=90)
-        plt.legend(patches, labels, loc="best")
-        plt.title('How people are reacting on ' + searchTerm +
-                  ' by analyzing ' + str(noOfSearchTerms) + ' Tweets.')
-        plt.axis('equal')
-        plt.tight_layout()
-        plt.show()
 
 
 if __name__ == "__main__":
