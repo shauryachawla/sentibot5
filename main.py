@@ -1,4 +1,4 @@
-import time
+from time import gmtime, strftime, sleep
 import sys
 import tweepy
 from textblob import TextBlob
@@ -48,7 +48,7 @@ def doTheThing():
 
     # print(trends)
 
-    NoOfTerms = 15
+    NoOfTerms = 25
     pos = []
     i = 0
     for trend in trends:
@@ -78,7 +78,7 @@ def doTheThing():
           trends[trend_location] + " hashtag")
     try:
         api.update_status("The most positive tweets are associated with " +
-                          trends[trend_location] + " hashtag")
+                          trends[trend_location] + " hashtag. " + strftime("%Y-%m-%d %H:%M:%S", gmtime()))
     except:
         print("duplicate status")
 
@@ -87,7 +87,7 @@ while True:
     # api.update_status('Updating again 2')
     doTheThing()
     print("i'm working")
-    time.sleep(3600)
+    sleep(3600)
 # updating a status
 # api.update_status('Updating again 2')
 
