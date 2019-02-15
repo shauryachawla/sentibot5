@@ -82,16 +82,17 @@ def doTheThing():
     except:
         print("duplicate status")
 
+# to follow every user back
+
+
+def followBack():
+    for follower in tweepy.Cursor(api.followers).items():
+        follower.follow()
+        print follower.screen_name
+
 
 while True:
-    # api.update_status('Updating again 2')
+    followBack()
     doTheThing()
     print("i'm working")
     sleep(3600)
-# updating a status
-# api.update_status('Updating again 2')
-
-# to follow every user back
-# for follower in tweepy.Cursor(api.followers).items():
-#     follower.follow()
-#     print follower.screen_name
