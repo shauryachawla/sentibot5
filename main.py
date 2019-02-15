@@ -3,7 +3,7 @@ import sys
 import tweepy
 from textblob import TextBlob
 import re
-from keys import consumerKey, consumerSecret, accessToken, accessTokenSecret
+# from keys import consumerKey, consumerSecret, accessToken, accessTokenSecret
 
 # from textblob import TextBlob
 # import matplotlib.pyplot as plt
@@ -18,10 +18,10 @@ def cleanTweet(tweet):
 
 
 # authenticating
-# consumerKey = 'VFxtQvRfgst3f9aPyFTy7wR8A'
-# consumerSecret = '44pQWeZr6Ifmj7OaaVfWSACesaxKnJNouwqom9mMJ3UhqKaxNA'
-# accessToken = '1093171008154923009-QsKJwczSgeT3wb1PGc0nI9D1TGaHiN'
-# accessTokenSecret = 'ysRDaRdYXkaIxcci2NJiRfHvCyO6vMMLnWF0aYLtXVOWb'
+consumerKey = 'VFxtQvRfgst3f9aPyFTy7wR8A'
+consumerSecret = '44pQWeZr6Ifmj7OaaVfWSACesaxKnJNouwqom9mMJ3UhqKaxNA'
+accessToken = '1093171008154923009-QsKJwczSgeT3wb1PGc0nI9D1TGaHiN'
+accessTokenSecret = 'ysRDaRdYXkaIxcci2NJiRfHvCyO6vMMLnWF0aYLtXVOWb'
 auth = tweepy.OAuthHandler(consumerKey, consumerSecret)
 auth.set_access_token(accessToken, accessTokenSecret)
 api = tweepy.API(auth)
