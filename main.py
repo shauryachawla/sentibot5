@@ -1,3 +1,4 @@
+import time
 import sys
 import tweepy
 from textblob import TextBlob
@@ -25,55 +26,64 @@ auth = tweepy.OAuthHandler(consumerKey, consumerSecret)
 auth.set_access_token(accessToken, accessTokenSecret)
 api = tweepy.API(auth)
 
-trends = []
-jdata = api.trends_place(23424848)
-# # pprint(jdata[0]["trends"])
-trends_arr = jdata[0]["trends"][:10]
-# # pprint(trend_arr)
 
+def doTheThing():
+    trends = []
+    jdata = api.trends_place(23424848)
+    # # pprint(jdata[0]["trends"])
+    trends_arr = jdata[0]["trends"][:10]
+    # # pprint(trend_arr)
 
-for trend in trends_arr:
-    if(trend['name'][0] == "#"):
-        try:
-            cleaned_name = trend['name'][1:]
-            trends.append(cleaned_name)
+    for trend in trends_arr:
+        if(trend['name'][0] == "#"):
+            try:
+                cleaned_name = trend['name'][1:]
+                trends.append(cleaned_name)
+                # i += 1
+            except:
+                continue
+        else:
+            trends.append(trend['name'])
             # i += 1
-        except:
-            continue
-    else:
-        trends.append(trend['name'])
-        # i += 1
 
-# print(trends)
+    # print(trends)
 
-NoOfTerms = 2
-pos = []
-i = 0
-for trend in trends:
-    polarity = 0
-    tweets = []
-    tweetText = []
-    tweets = tweepy.Cursor(api.search, q=trend, lang="en").items(NoOfTerms)
-    for tweet in tweets:
-        tweetText.append(cleanTweet(tweet.text).encode('utf-8'))
-        analysis = TextBlob(tweet.text)
-        polarity += analysis.sentiment.polarity
-    pos.append(polarity)
-    # print(tweetText)
+    NoOfTerms = 2
+    pos = []
+    i = 0
+    for trend in trends:
+        polarity = 0
+        tweets = []
+        tweetText = []
+        tweets = tweepy.Cursor(api.search, q=trend, lang="en").items(NoOfTerms)
+        for tweet in tweets:
+            tweetText.append(cleanTweet(tweet.text).encode('utf-8'))
+            analysis = TextBlob(tweet.text)
+            polarity += analysis.sentiment.polarity
+        pos.append(polarity)
+        # print(tweetText)
 
-print(trends)
-print(pos)
-positive_trend_polarity = max(pos)
-print(positive_trend_polarity)
-trend_location = -1
-j = 0
-for i in pos:
-    if(i == positive_trend_polarity):
-        trend_location = j
-    else:
-        j += 1
-print("The most positive tweets are associated with " +
-      trends[trend_location] + " hashtag")
+    print(trends)
+    print(pos)
+    positive_trend_polarity = max(pos)
+    print(positive_trend_polarity)
+    trend_location = -1
+    j = 0
+    for i in pos:
+        if(i == positive_trend_polarity):
+            trend_location = j
+        else:
+            j += 1
+    print("The most positive tweets are associated with " +
+          trends[trend_location] + " hashtag")
+    api.update_status("The most positive tweets are associated with " +
+                      trends[trend_location] + " hashtag")
+
+
+while True:
+    # api.update_status('Updating again 2')
+    doTheThing()
+    time.sleep(1440)
 # updating a status
 # api.update_status('Updating again 2')
 
