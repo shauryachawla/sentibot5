@@ -9,7 +9,7 @@ import re
 # import matplotlib.pyplot as plt
 
 # reload(sys)
-sys.setdefaultencoding('utf8')
+# sys.setdefaultencoding('utf8')
 
 
 def cleanTweet(tweet):
