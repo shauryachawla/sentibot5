@@ -48,7 +48,7 @@ def doTheThing():
 
     # print(trends)
 
-    NoOfTerms = 2
+    NoOfTerms = 15
     pos = []
     i = 0
     for trend in trends:
@@ -83,7 +83,7 @@ def doTheThing():
 while True:
     # api.update_status('Updating again 2')
     doTheThing()
-    time.sleep(1440)
+    time.sleep(300)
 # updating a status
 # api.update_status('Updating again 2')
 
