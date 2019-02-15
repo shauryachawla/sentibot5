@@ -87,7 +87,7 @@ while True:
     # api.update_status('Updating again 2')
     doTheThing()
     print("i'm working")
-    time.sleep(200)
+    time.sleep(3600)
 # updating a status
 # api.update_status('Updating again 2')
 
