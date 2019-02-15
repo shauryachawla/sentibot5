@@ -8,7 +8,7 @@ import re
 # from textblob import TextBlob
 # import matplotlib.pyplot as plt
 
-reload(sys)
+# reload(sys)
 sys.setdefaultencoding('utf8')
 
 
