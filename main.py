@@ -76,8 +76,11 @@ def doTheThing():
             j += 1
     print("The most positive tweets are associated with " +
           trends[trend_location] + " hashtag")
-    api.update_status("The most positive tweets are associated with " +
-                      trends[trend_location] + " hashtag")
+    try:
+        api.update_status("The most positive tweets are associated with " +
+                          trends[trend_location] + " hashtag")
+    except:
+        continue
 
 
 while True:
