@@ -31,7 +31,7 @@ def doTheThing():
     trends = []
     jdata = api.trends_place(23424848)
     # # pprint(jdata[0]["trends"])
-    trends_arr = jdata[0]["trends"][:10]
+    trends_arr = jdata[0]["trends"][:9]
     # # pprint(trend_arr)
 
     for trend in trends_arr:
@@ -88,7 +88,7 @@ def doTheThing():
 def followBack():
     for follower in tweepy.Cursor(api.followers).items():
         follower.follow()
-        print follower.screen_name
+        print(follower.screen_name)
 
 
 while True:
