@@ -95,4 +95,4 @@ while True:
     followBack()
     doTheThing()
     print("i'm working")
-    sleep(3600)
+    sleep(86400)
